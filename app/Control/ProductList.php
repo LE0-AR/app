@@ -1,85 +1,77 @@
 <?php
-    include "config/conexion.php";
+// Incluir la conexión a la base de datos
+include "../config/conexion.php";
 
-    if ($connect->connect_error) {
-        die("Conexión fallida: " . $connect->connect_error);
-    }
+if ($connect->connect_error) {
+    die("Conexión fallida: " . $connect->connect_error);
+}
 
-    $sql = "SELECT productos.*, 
-                   caracteristicas.titulo AS caracteristica_titulo, 
-                   caracteristicas.descripcion AS caracteristica_descripcion, 
-                   especificaciones_tecnicas.especificacion AS especificacion_titulo, 
-                   especificaciones_tecnicas.valor AS especificacion_valor, 
-                   imagenes_secundarias.imagen_url AS imagen_secundaria
-            FROM productos
-            LEFT JOIN caracteristicas ON productos.id = caracteristicas.producto_id
-            LEFT JOIN especificaciones_tecnicas ON productos.id = especificaciones_tecnicas.producto_id
-            LEFT JOIN imagenes_secundarias ON productos.id = imagenes_secundarias.producto_id;";
-    
-    $result = $connect->query($sql);
+// Consulta SQL solo con los datos de la tabla "productos"
+$sql = "SELECT * FROM productos";
+$result = $connect->query($sql);
 
-    // Definir la URL base para las imágenes
-    $base_url = "http://localhost/app/app/";
+// Definir la URL base para las imágenes y archivos
+$base_url = "http://localhost/app/app/";
 ?>
-<div class="container">
+
+<
+    <div class="container">
     <h1 class="titulo">Lista de Productos</h1>
 
-    <table class="tabla">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Sector</th>
-                <th>Categoría</th>
-                <th>Imagen Principal</th>
-                <th>Imagen Secundaria</th>
-                <th>Descripción</th>
-                <th>Ficha Técnica</th>
-                <th>Característica</th>
-                <th>Especificación</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()) { ?>
+        <div class="newProduct">
+            <a type="button" class="btn btn-outline-primary" href="../Views/product.php">Nuevo Producto</a>
+        </div>
+
+     
+        <table class="table table-striped">
+            <thead class="thead-dark">
                 <tr>
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['nombre']; ?></td>
-                    <td><?php echo $row['sector']; ?></td>
-                    <td><?php echo $row['categoria']; ?></td>
-                    <td>
-                        <?php if (!empty($row['imagen_principal'])) { ?>
-                            <img src="<?php echo $base_url . $row['imagen_principal']; ?>" width="80">
-                        <?php } else { ?>
-                            No imagen
-                        <?php } ?>
-                    </td>
-                    <td>
-                        <?php if (!empty($row['imagen_secundaria'])) { ?>
-                            <img src="<?php echo $base_url . $row['imagen_secundaria']; ?>" width="80">
-                        <?php } else { ?>
-                            No imagen secundaria
-                        <?php } ?>
-                    </td>
-                    <td><?php echo $row['descripcion'] ?? "Sin descripción"; ?></td>
-                    <td>
-                        <?php if (!empty($row['ficha_tecnica'])) { ?>
-                            <a href="<?php echo $base_url . $row['ficha_tecnica']; ?>" target="_blank">Ver</a>
-                        <?php } else { ?>
-                            Sin ficha técnica
-                        <?php } ?>
-                    </td>
-                    <td>
-                        <strong><?php echo $row['caracteristica_titulo'] ?? "Sin título"; ?></strong><br>
-                        <?php echo $row['caracteristica_descripcion'] ?? "Sin descripción"; ?>
-                    </td>
-                    <td>
-                        <strong><?php echo $row['especificacion_titulo'] ?? "Sin especificación"; ?></strong>: 
-                        <?php echo $row['especificacion_valor'] ?? "Sin valor"; ?>
-                    </td>
-                    <td><button>Eliminar</button> <button>Editar</button></td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Sector</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Ficha Técnica</th>
+                    <th scope="col">Detalles</th>
+                    <th scope="col">Acción</th>
                 </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                    <tr>
+                        <th scope="row"><?php echo $row['id']; ?></th>
+                        <td><?php echo $row['nombre']; ?></td>
+                        <td><?php echo $row['sector']; ?></td>
+                        <td><?php echo $row['categoria']; ?></td>
+
+                        <!-- Imagen principal -->
+                        <td class="img">
+                            <?php if (!empty($row['imagen_principal'])) { ?>
+                                <img src="<?php echo $base_url . 'Control/' . $row['imagen_principal']; ?>" width="80">
+                            <?php } else { ?>
+                                <span>Sin imagen</span>
+                            <?php } ?>
+                        </td>
+
+                        <!-- Ficha técnica -->
+                        <td>
+                            <?php if (!empty($row['ficha_tecnica'])) { ?>
+                                <a href="<?php echo $base_url . 'Control/' . $row['ficha_tecnica']; ?>" target="_blank" class="btn btn-outline-secondary">Ver Ficha</a>
+                            <?php } else { ?>
+                                <span>Sin ficha técnica</span>
+                            <?php } ?>
+                        </td>
+                        <!-- Ver todos los detalles del producto -->
+                        <td>
+                            <button class="btn btn-outline-success">Detalles</button>
+                        </td>
+                        <!-- Acciones -->
+                        <td>
+                            <a href="../Views/EditarProduct.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-warning">Editar</a>
+                            <a href="../Views/EditarProduct.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>

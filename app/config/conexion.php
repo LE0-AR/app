@@ -14,7 +14,7 @@ if (!mysqli_real_connect($connect, $host, $user, $password, $database)) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-echo "<script>console.log('Conexión exitosa');</script>";
+echo "<script>console.log('live serve');</script>";
 
 // Verificar si la conexión sigue activa antes de ejecutar consultas
 if (!mysqli_ping($connect)) {
