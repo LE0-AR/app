@@ -24,7 +24,7 @@ $total_productos = ($result_productos->num_rows > 0) ? $result_productos->fetch_
   <div class="containerHome">
         <h1>Inicio</h1>
         <div class="dashboard">
-            <div class="card" <!--onclick="location.href='usuarios.php'"-->
+            <div class="card"> <!--onclick="location.href='usuarios.php'"-->
                 <i class="fas fa-user icon"></i>
                 <p class="title">USUARIOS</p>
                 <p class="count">0</p>

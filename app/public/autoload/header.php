@@ -1,7 +1,7 @@
 
   <div class="aside">
     <div class="logo">
-        <a href="#"><span></span>TM</a>
+        <a ><span></span>TM</a>
     </div>
     <div class="nav-toggler">
         <span></span>

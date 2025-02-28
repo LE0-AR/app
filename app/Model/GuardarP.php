@@ -42,10 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Insertar especificaciones técnicas
-        if (!empty($_POST['especificacion_titulo']) && !empty($_POST['especificacion_valor'])) {
+        if (!empty($_POST['especificacion_titulo']) && !empty($_POST['especificacion_descripcion'])) {
             foreach ($_POST['especificacion_titulo'] as $index => $titulo) {
-                $valor = $_POST['especificacion_valor'][$index];
-                $sql_especificacion = "INSERT INTO especificaciones_tecnicas (producto_id, especificacion, valor) 
+                $valor = $_POST['especificacion_descripcion'][$index];
+                $sql_especificacion = "INSERT INTO especificaciones_tecnicas (producto_id, titulo, descripcion) 
                                        VALUES ('$producto_id', '$titulo', '$valor')";
                 $connect->query($sql_especificacion);
             }

@@ -7,8 +7,16 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../public/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../public/css/table.css">
 </head>
+<style>
+     .img img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+</style>
 <body>
    
 <?php

@@ -16,6 +16,5 @@
     include_once "../Views/newProduc.php";
 ?>
 
-<script src="../public/js/form.js"></script>
 </body>
 </html>
