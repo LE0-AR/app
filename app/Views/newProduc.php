@@ -2,11 +2,35 @@
     <h2>Registro de Producto</h2>
     <form method="POST" action="<?php echo APP_URL; ?>app/Model/GuardarP.php" enctype="multipart/form-data">
         <!-- Datos generales del producto -->
-        <label>Nombre del Producto:</label>
-        <input type="text" name="nombre" required />
+        <div class="div">
+            <label>Nombre del Producto:</label>
+            <input type="text" name="nombre" required />
 
-        <label>Sector:</label>
-        <input type="text" name="sector" required />
+            <label>Sector:</label>
+            <select name="sector" id="sector" required>
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option value="Industrial">Industrial</option>
+                <option value="Comercial">Comercial</option>
+                <option value="Residencial">Residencial</option>
+            </select>
+            <span id="error-message" style="color: red; display: none;">Por favor, seleccione un sector válido.</span>
+
+            <script>
+                const form = document.querySelector("form");
+                const sectorSelect = document.getElementById("sector");
+                const errorMessage = document.getElementById("error-message");
+
+                form.addEventListener("submit", function(event) {
+                    if (sectorSelect.value === "") {
+                        event.preventDefault(); // Evita que el formulario se envíe
+                        errorMessage.style.display = "block"; // Muestra el mensaje de error
+                    } else {
+                        errorMessage.style.display = "none"; // Oculta el mensaje de error si es válido
+                    }
+                });
+            </script>
+        </div>
+
 
         <label>Categoría:</label>
         <input type="text" name="categoria" required />
