@@ -22,22 +22,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Actualizar tabla productos
-    $sql = "UPDATE productos SET nombre='$nombre', categoria='$categoria', sector='$sector', descripcion='$descripcion', imagen_principal='$imagen_principal', ficha_tecnica='$ficha_tecnica' WHERE id='$id'";
+    $sql = "UPDATE productos SET nombre='$nombre', categoria='$categoria', sector='$sector', 
+            descripcion='$descripcion', imagen_principal='$imagen_principal', 
+            ficha_tecnica='$ficha_tecnica' WHERE id='$id'";
+
     if ($connect->query($sql) === TRUE) {
-        // Actualizar características
+        // Primero eliminar características existentes
+        $sql_delete_car = "DELETE FROM caracteristicas WHERE producto_id='$id'";
+        $connect->query($sql_delete_car);
+
+        // Insertar nuevas características
         if (!empty($_POST['caracteristica_titulo']) && !empty($_POST['caracteristica_descripcion'])) {
             foreach ($_POST['caracteristica_titulo'] as $index => $titulo) {
                 $descripcion_car = $_POST['caracteristica_descripcion'][$index];
-                $sql_car = "UPDATE caracteristicas SET titulo='$titulo', descripcion='$descripcion_car' WHERE producto_id='$id' AND id='$index'";
+                $sql_car = "INSERT INTO caracteristicas (producto_id, titulo, descripcion) 
+                           VALUES ('$id', '$titulo', '$descripcion_car')";
                 $connect->query($sql_car);
             }
         }
 
-        // Actualizar especificaciones técnicas
+        // Eliminar especificaciones técnicas existentes
+        $sql_delete_esp = "DELETE FROM especificaciones_tecnicas WHERE producto_id='$id'";
+        $connect->query($sql_delete_esp);
+
+        // Insertar nuevas especificaciones técnicas
         if (!empty($_POST['especificacion_titulo']) && !empty($_POST['especificacion_descripcion'])) {
             foreach ($_POST['especificacion_titulo'] as $index => $titulo) {
-                $descripcion = $_POST['especificacion_descripcion'][$index];
-                $sql_esp = "UPDATE especificaciones_tecnicas SET titulo='$titulo', descripcion='$descripcion' WHERE producto_id='$id' AND id='$index'";
+                $descripcion_esp = $_POST['especificacion_descripcion'][$index];
+                $sql_esp = "INSERT INTO especificaciones_tecnicas (producto_id, titulo, descripcion) 
+                           VALUES ('$id', '$titulo', '$descripcion_esp')";
                 $connect->query($sql_esp);
             }
         }
@@ -50,27 +63,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Subir nuevas imágenes secundarias
             foreach ($_FILES['imagenes_secundarias']['name'] as $key => $value) {
-                $imagen_secundaria = "img_secundarias/" . basename($_FILES['imagenes_secundarias']['name'][$key]);
+                $imagen_secundaria = "img/" . basename($_FILES['imagenes_secundarias']['name'][$key]);
                 move_uploaded_file($_FILES['imagenes_secundarias']['tmp_name'][$key], "../Control/" . $imagen_secundaria);
 
-                // Insertar nueva imagen secundaria en la base de datos
-                $sql_insert_imagen = "INSERT INTO imagenes_secundarias (producto_id, imagen_url) VALUES ('$id', '$imagen_secundaria')";
-                $connect->query($sql_insert_imagen);
+                $sql_imagen = "INSERT INTO imagenes_secundarias (producto_id, imagen_url) 
+                              VALUES ('$id', '$imagen_secundaria')";
+                $connect->query($sql_imagen);
             }
         }
 
-        echo "<script>alert('Producto actualizado correctamente'); window.location.href = '../Views/formulario.php';</script>";
+        echo "<script>
+            alert('Producto actualizado correctamente');
+            window.location.href = '../Views/formulario.php';
+        </script>";
     } else {
-        echo "<script>alert('Error al actualizar el producto'); window.location.href = '../Views/formulario.php';</script>";
+        echo "<script>
+            alert('Error al actualizar el producto: " . $connect->error . "');
+            window.location.href = '../Views/formulario.php';
+        </script>";
     }
 
-    $connect->close(); // Cerrar conexión
-} else {
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        $sql = "SELECT * FROM productos WHERE id='$id'";
-        $result = $connect->query($sql);
-        $producto = $result->fetch_assoc();
-    }
+    $connect->close();
 }
 ?>

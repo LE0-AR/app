@@ -1,0 +1,154 @@
+.product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 100px 150px;
+    padding: 0 25px;
+    margin-right: 200px;
+}
+.thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-right: 30px;
+    
+}
+.thumbnails img {
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: auto;
+    
+    border: 1px solid #FF6000;
+}
+
+.main-image {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 500px;
+    height: 400px;
+}
+.main-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+.details {
+    margin-left: 100px;
+    max-width: 500px;
+    margin-top: -5%;
+}
+.details h2 {
+    color: #FF6000;
+    font-family: "Bebas Neue", serif;
+    font-size: 48px;
+    margin: 10px 0;
+}
+.details p {
+    font-size: 16px;
+    color: #000000;
+    font-family: "Libre Franklin", serif;
+    text-align: justify;
+    margin: 10px 0;
+}
+.btn {
+    display: inline-block;
+    background: #000000;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 10px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+.specifications {
+    width: 100%;
+    margin-top:10px;
+
+}
+.tituloEs {
+    color: #0056FF;
+    font-size: 36px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: "Bebas Neue", serif;
+}
+.specs-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.specs-box {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    font-family: "Libre Franklin", serif;
+}
+th {
+    font-weight: bold;
+
+}
+tr:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+.linea{
+    border-bottom: 1px solid #000000;
+    margin: -10px 150px;
+    max-width:100%;
+    height: 2px;
+   padding: 5px;
+}
+
+.tables-container {
+    padding: 0 150px;
+    margin-top: 50px;
+}
+
+.tables-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.specifications {
+    width: 48%;
+    margin-left: 200px;
+}
+
+.button-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.btn-back {
+    display: inline-block;
+    background: #FF6000;
+    color: #ffffff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-family: "Libre Franklin", serif;
+    transition: background-color 0.3s;
+}
+
+.btn-back:hover {
+    background: #cc4d00;
+    color: #ffffff;
+    text-decoration: none;
+}

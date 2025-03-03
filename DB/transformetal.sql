@@ -31,8 +31,7 @@ CREATE TABLE `caracteristicas` (
   `id` int(11) NOT NULL,
   `producto_id` int(11) DEFAULT NULL,
   `titulo` varchar(255) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL,
-  `valor` varchar(25) NOT NULL
+  `descripcion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -45,7 +44,6 @@ CREATE TABLE `especificaciones_tecnicas` (
   `id` int(11) NOT NULL,
   `producto_id` int(11) DEFAULT NULL,
   `titulo` varchar(255) DEFAULT NULL,
-  `valor` varchar(255) DEFAULT NULL,
   `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

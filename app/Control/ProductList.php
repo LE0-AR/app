@@ -62,7 +62,7 @@ $base_url = "http://localhost/app/app/";
                         </td>
                         <!-- Ver todos los detalles del producto -->
                         <td>
-                            <a class="btn btn-outline-success">Detalles</a>
+                            <a class="btn btn-outline-success" href="../Views/detalles.php?id=<?php echo $row['id']; ?>">Detalles</a>
                         </td>
                         <!-- Acciones -->
                         <td>
