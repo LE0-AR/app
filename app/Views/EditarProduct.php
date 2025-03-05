@@ -2,6 +2,8 @@
     require_once "../config/app.php"; 
     include_once "../public/autoload/head.php";
     include_once "../config/conexion.php";
+    include_once "../config/sesion_Ini.php";
+    include_once "../config/sesion_Ini.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

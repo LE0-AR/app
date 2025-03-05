@@ -3,6 +3,7 @@
     include_once "../public/autoload/head.php";
     include_once "../config/conexion.php";
     include_once "../config/sesion_Ini.php";
+    include_once "../config/sesion_Ini.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,7 @@
    
 <?php
     include_once "../public/autoload/header.php";
-    include_once "../Views/newProduc.php";
+    include_once "../Control/EditUser.php";
 ?>
 
 </body>
