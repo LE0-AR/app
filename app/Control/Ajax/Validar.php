@@ -1,6 +1,6 @@
 <?php
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Sanitizamos las entradas
     $usuario = trim($_POST['usuario']);
     $password = trim($_POST['password']);
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         timer: 1000,
                         buttons: false
                     }).then(function() {
-                        window.location.href = 'app/';
+                        window.location.href = 'app/index.php';
                     });
                 </script>";
             } else if ($_SESSION['rol'] == 'User') {
@@ -47,11 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     });
                 </script>";
             }
+            exit(); 
         } else {
             echo "<script> 
                 swal({
                     title: 'Error',
-                    text: 'Contraseña incorrecta',
+                    text: 'Credenciales incorrectas',
                     icon: 'error'
                 });
             </script>";
@@ -60,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<script> 
             swal({
                 title: 'Error',
-                text: 'Usuario no encontrado',
+                text: 'Credenciales incorrectas',
                 icon: 'error'
             });
         </script>";
