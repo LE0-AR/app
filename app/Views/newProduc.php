@@ -1,6 +1,6 @@
 <div class="container" >
       <h2>Ingrese los datos del producto</h2>
-        <form method="POST" action="<?php echo APP_URL; ?>app/Model/GuardarP.php" enctype="multipart/form-data">
+        <form method="POST" action="<?php echo APP_URL; ?>/app/Model/GuardarP.php" enctype="multipart/form-data">
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="inputEmail4">Nombre del Producto:</label>

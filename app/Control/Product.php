@@ -19,7 +19,7 @@ $base_url = "http://localhost/app/app/";
         <h1 class="titulo">Lista de Productos</h1>
 
         <div class="newProduct">
-            <a type="button" class="btn btn-outline-primary" href="../../Views/productUser.php">Nuevo Producto</a>
+            <a type="button" class="btn btn-outline-primary" href="../../Views/user/product.php">Nuevo Producto</a>
         </div>
 
         <table class="table table-striped">

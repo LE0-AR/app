@@ -1,3 +1,5 @@
+
+
 <?php
 include "../../config/conexion.php";
 
@@ -9,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descripcion = $_POST['descripcion'];
 
     // Base path for file uploads
-    $base_path = "../Control/";
+    $base_path = "../../Control/";
 
     // Manejo de archivos (Imagen principal y Ficha Técnica)
     $imagen_principal = "";
@@ -64,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
+      
         echo "<script>alert('Producto registrado correctamente'); window.location.href = '../../Views/user/';</script>";
     } else {
         echo "<script>alert('Error al registrar el producto'); window.location.href = '../../Views/user/';</script>";
