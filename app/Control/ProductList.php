@@ -25,7 +25,8 @@ $base_url = "http://localhost/app/app/";
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">Identificador</th>
+                    <th scope="col">No</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Sector</th>
                     <th scope="col">Categoría</th>
@@ -36,9 +37,13 @@ $base_url = "http://localhost/app/app/";
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = $result->fetch_assoc()) { ?>
+                <?php
+                   $contador = 1; 
+                    while ($row = $result->fetch_assoc()) {
+                 ?>
                     <tr>
                         <th scope="row"><?php echo $row['id']; ?></th>
+                        <th scope="row"><?php echo $contador++; ?></th>
                         <td><?php echo $row['nombre']; ?></td>
                         <td><?php echo $row['sector']; ?></td>
                         <td><?php echo $row['categoria']; ?></td>

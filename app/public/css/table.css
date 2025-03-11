@@ -24,3 +24,11 @@ table{
     align-items: center;
     justify-content: center;
 }
+
+.pass{
+    color: red;
+    background-color: #000000;
+}
+.action{
+    width: 100%;
+}

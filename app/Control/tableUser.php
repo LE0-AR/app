@@ -9,7 +9,14 @@ $sql = "SELECT * FROM usuario";
 $result = $connect->query($sql);
 
 ?>
+<style>
+    .pass{
+    color: red;
+    background-color: #000000;
+    width: 0px !important;
+}
 
+</style>
 <div class="container">
     <h1 class="titulo">Tabla de Usuarios</h1>
 
@@ -25,7 +32,7 @@ $result = $connect->query($sql);
                 <th scope="col">Usuario</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Teléfono</th>
-                <th scope="col">Contraseña</th>
+                <th scope="col" class="pass">Contraseña</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Acción</th>
             </tr>
@@ -38,13 +45,13 @@ $result = $connect->query($sql);
                     <td><?php echo htmlspecialchars($row['usuario']); ?></td>
                     <td><?php echo htmlspecialchars($row['correo']); ?></td>
                     <td><?php echo htmlspecialchars($row['telefono']); ?></td>
-                    <td><?php echo htmlspecialchars($row['password']); ?></td>
+                    <td class="pass"><?php echo htmlspecialchars($row['password']); ?></td>
                     <td>
                         <?php 
                             echo ($row['rol'] === 'Admin') ? 'Administrador' : 'Usuario';
                         ?>
                     </td>
-                    <td>
+                    <td class="action">
                         <a href="../Views/editUser.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-warning">Editar</a>
                         <a href="../Model/DeleteUser.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">Eliminar</a>
                     </td>
